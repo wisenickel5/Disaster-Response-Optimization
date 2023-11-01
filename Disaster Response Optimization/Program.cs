@@ -1,7 +1,17 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.Extensions.Configuration;
+using Disaster_Response_Optimization.WebAPI.Configurations;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var googleMapsApiKey = GoogleSecretManager.AccessSecret("gm-api");
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.Configure<GoogleMapsConfig>(config =>
+{
+    config.ApiKey = googleMapsApiKey;
+});
 
 var app = builder.Build();
 
