@@ -1,11 +1,23 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Disaster Response Optimization";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <img src="path_to_your_logo" alt="Your Logo" style="width:200px;height:100px;"> <!-- Update path_to_logo -->
+    <h1 class="display-4">Disaster Response Optimization</h1>
+
+    <div id="buttons">
+        <button id="showResponders" onclick="showResponders()">Show First Responders</button>
+        <button id="showDisasters" onclick="showDisasters()">Show Real-Time Disasters</button>
+        <button id="calculateRoute" onclick="calculateRoute()">Calculate Shortest Route</button>
+    </div>
+
+    <div id="map" style="width: 100%; height: 500px;"></div> <!-- Map Container -->
 </div>
 
+@section Scripts {
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvsF8m2_rN_0-vS7tUN8EA5oZnegffdbk&callback=initMap" async defer></script>
+    <script type="module" src="~/js/mapModule.js"></script>
+}
