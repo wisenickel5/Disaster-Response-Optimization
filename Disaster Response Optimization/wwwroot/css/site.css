@@ -58,3 +58,22 @@ button:hover {
     background-color: grey;
 }
 
+/* Style for dropdowns and disabled buttons */
+select, button:disabled {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+button {
+    /* Existing button styles */
+    cursor: pointer;
+}
+
+    button:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }

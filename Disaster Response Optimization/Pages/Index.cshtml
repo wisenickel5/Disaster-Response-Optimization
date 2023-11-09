@@ -4,16 +4,33 @@
     ViewData["Title"] = "Disaster Response Optimization";
 }
 
-<div class="text-center">
-    <img src="~/static/disaster_response_logo.png" alt="Disaster Response Optimization Logo">
 
-    <div id="buttons">
-        <button id="showResponders" onclick="showResponders()">Show First Responders</button>
-        <button id="showDisasters" onclick="showDisasters()">Show Real-Time Disasters</button>
-        <button id="calculateRoute" onclick="calculateRoute()">Calculate Shortest Route</button>
+<div class="container">
+    <div class="text-center">
+        <img src="~/static/disaster_response_logo.png" alt="Disaster Response Optimization Logo">
     </div>
 
-    <div id="map" style="width: 100%; height: 500px;"></div> <!-- Map Container -->
+    <div class="text-center">
+        <select id="stateSelector">
+            <option value="CA">California</option>
+            <!-- Add other states as options -->
+        </select>
+
+        <select id="disasterTypeSelector">
+            <option value="Fire">Fire</option>
+            <!-- Add other disaster types as options -->
+        </select>
+
+        <button id="queryDisaster" onclick="queryDisaster()">Query Most Critical Disaster</button>
+        <button id="showResponders" onclick="showResponders()" disabled>Show First Responders</button>
+        <button id="calculateRoute" onclick="calculateRoute()" disabled>Calculate Shortest Route</button>
+    </div>
+
+    <div class="row">
+        <div class="text-center">
+            <div id="map" style="width: 100%; height: 500px;"></div> <!-- Map Container -->
+        </div>
+    </div>
 </div>
 
 
@@ -23,5 +40,5 @@
     @inject IOptions<GoogleMapsConfig> GoogleMapsConfig
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=@GoogleMapsConfig.Value.ApiKey&callback=initMap"></script>
-    <script type="module" src="~/js/mapModule.js"></script>
+    <script type="module" src="~/js/site.js"></script>
 }
