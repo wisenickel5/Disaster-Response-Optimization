@@ -20,4 +20,10 @@
   <ItemGroup>
     <PackageReference Include="Google.Cloud.SecretManager.V1" Version="2.1.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\static\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\static\" />
+  </ItemGroup>
 </Project>
