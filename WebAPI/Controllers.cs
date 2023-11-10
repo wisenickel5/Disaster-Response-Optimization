@@ -9,11 +9,11 @@ namespace Disaster_Response_Optimization.WebAPI.Controllers
     [ApiController]
     public class DisasterController : ControllerBase
     {
-        private readonly IDisasterDeclarationService _service;
+        private readonly IDisasterDeclarationService _disasterService;
 
-        public DisasterController(IDisasterDeclarationService service)
+        public DisasterController(IDisasterDeclarationService disasterService)
         {
-            _service = service;
+            _disasterService = disasterService;
         }
 
         [HttpGet("{state}/{disasterType}")]
@@ -21,7 +21,7 @@ namespace Disaster_Response_Optimization.WebAPI.Controllers
         {
             try
             {
-                var zipCode = _service.GetMajorDisasterZipCode(state, disasterType);
+                var zipCode = _disasterService.GetMajorDisasterZipCode(state, disasterType);
                 return Ok(zipCode);
             }
             catch (Exception ex)
