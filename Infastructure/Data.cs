@@ -26,7 +26,13 @@ namespace Disaster_Response_Optimization.Infastructure.Data
         public string? DesignatedArea { get; set; }
     }
 
-    public class DisasterDeclarationService
+    // Interface defines the contract for this service.
+    public interface IDisasterDeclarationService
+    {
+        string? GetMajorDisasterZipCode(string state, string incidentType);
+    }
+
+    public class DisasterDeclarationService : IDisasterDeclarationService
     {
         private readonly string _filePath;
         private readonly List<DisasterDeclaration> _declarations;
@@ -51,7 +57,7 @@ namespace Disaster_Response_Optimization.Infastructure.Data
             }
         }
 
-        public string GetMajorDisasterZipCode(string state, string incidentType)
+        public string? GetMajorDisasterZipCode(string state, string incidentType)
         {
             var declaration = _declarations
                 .Where(d => d.State == state && d.IncidentType == incidentType && d.DeclarationType == "DR")

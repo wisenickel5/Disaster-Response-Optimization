@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Cloud.SecretManager.V1" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Infastructure\Infastructure.csproj" />
+  </ItemGroup>
 </Project>

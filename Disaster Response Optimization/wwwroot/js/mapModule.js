@@ -32,18 +32,25 @@ export function showResponders() {
 }
 
 export function queryDisaster() {
-    // Get selected state and disaster type from dropdowns
     const state = document.getElementById('stateSelector').value;
     const disasterType = document.getElementById('disasterTypeSelector').value;
 
     // Make an AJAX call to the backend to get the most critical disaster's zip code
     fetch(`/api/disaster/${state}/${disasterType}`)
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
         .then(zipCode => {
             panToZipCode(zipCode);
             document.getElementById('showResponders').disabled = false;
         })
-        .catch(error => console.error('Unable to get zip code.', error));
+        .catch(error => {
+            console.error('Unable to get zip code.', error);
+            alert('Unable to get zip code: ' + error.message);
+        });
 }
 
 export function calculateRoute() {
