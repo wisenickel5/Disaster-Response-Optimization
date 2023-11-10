@@ -5,7 +5,7 @@ namespace Disaster_Response_Optimization.WebAPI.Configurations
 {
     public class GoogleMapsConfig
     {
-        public string? ApiKey { get; set; }
+        public string? GoogleMapsApiKey { get; set; }
     }
 
     public class GoogleSecretManager

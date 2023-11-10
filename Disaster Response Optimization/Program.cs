@@ -10,7 +10,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.Configure<GoogleMapsConfig>(config =>
 {
-    config.ApiKey = googleMapsApiKey;
+    config.GoogleMapsApiKey = googleMapsApiKey;
 });
 
 var app = builder.Build();

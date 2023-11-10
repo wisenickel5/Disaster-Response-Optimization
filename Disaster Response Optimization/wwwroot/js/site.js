@@ -1,5 +1,7 @@
 ﻿// Initialize the map first
 let map;
+// Initialize the Geocoder
+let geocoder;
 
 
 window.initMap = function() {
@@ -8,4 +10,7 @@ window.initMap = function() {
         center: centerLocation,
         zoom: 4, // A zoom level of 4 should show most of the U.S.
     });
+
+    // Initialize the geocoder
+    window.geocoder = new google.maps.Geocoder();
 }

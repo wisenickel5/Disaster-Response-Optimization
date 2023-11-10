@@ -7,25 +7,21 @@ window.queryDisaster = queryDisaster;
 window.calculateRoute = calculateRoute;
 
 export function panToZipCode(zipCode) {
-    var lat = '';
-    var lng = '';
-    geocoder.geocode({ 'address': zipCode }, function (results, status) {
+    // Use the geocoder to get the latitude and longitude for the zipCode
+    window.geocoder.geocode({ 'address': zipCode }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-            lat = results[0].geometry.location.lat();
-            lng = results[0].geometry.location.lng();
+            // Assuming the first result is the one we want
+            let latLng = results[0].geometry.location;
+
+            // Panning to the given latLng
+            map.panTo(latLng);
+
+            // Zooming in for a closer look
+            map.setZoom(10);
         } else {
             alert("Geocode was not successful for the following reason: " + status);
         }
     });
-    alert('Latitude: ' + lat + ' Logitude: ' + lng);
-
-    const latLng = { lat: parseInt(lat), lng: parseInt(lng) }; // This is Washington, D.C., for example
-
-    // Panning to the given lat/lng
-    map.panTo(latLng);
-
-    // Zooming in for a closer look
-    map.setZoom(10);
 }
 
 export function showResponders() {
