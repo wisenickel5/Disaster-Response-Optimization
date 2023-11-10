@@ -1,24 +1,18 @@
-﻿// May need to initialize the map first
-let map;
-// Global variable to hold the selected responder location
+﻿// Global variable to hold the selected responder location
 let selectedResponderLocation = null;
 
-export function initMap() {
-    const centerLocation = { lat: 39.8283, lng: -98.5795 }; // Geographic center of the contiguous U.S.
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: centerLocation,
-        zoom: 4, // A zoom level of 4 should show most of the U.S.
-    });
-}
+window.panToZipCode = panToZipCode;
+window.showResponders = showResponders;
+window.queryDisaster = queryDisaster;
+window.calculateRoute = calculateRoute;
 
 export function panToZipCode(zipCode) {
     var lat = '';
     var lng = '';
-    const geocoder.geocode({ 'address': zipCode }, function (results, status) {
+    geocoder.geocode({ 'address': zipCode }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             lat = results[0].geometry.location.lat();
             lng = results[0].geometry.location.lng();
-        });
         } else {
             alert("Geocode was not successful for the following reason: " + status);
         }
@@ -33,7 +27,6 @@ export function panToZipCode(zipCode) {
     // Zooming in for a closer look
     map.setZoom(10);
 }
-
 
 export function showResponders() {
     // Show first responders logic here
@@ -55,19 +48,6 @@ export function queryDisaster() {
             document.getElementById('showResponders').disabled = false;
         })
         .catch(error => console.error('Unable to get zip code.', error));
-}
-
-// Unused
-export function showDisasters() {
-    // Similar to the showResponders function, you can populate this with actual data using AJAX calls.
-    // Placeholder logic:
-    const disasterLocation = { lat: 37.7849, lng: -122.4294 }; // Example location, update as per actual data
-    new google.maps.Marker({
-        position: disasterLocation,
-        map,
-        title: "Disaster",
-        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png' // Red dot for disasters
-    });
 }
 
 export function calculateRoute() {
@@ -96,10 +76,3 @@ export function calculateRoute() {
         }
     );
 }
-
-// Expose functions to global scope for onclick handlers
-window.initMap = initMap;
-window.queryDisaster = queryDisaster;
-window.showResponders = showResponders;
-window.calculateRoute = calculateRoute;
-window.panToZipCode = panToZipCode;

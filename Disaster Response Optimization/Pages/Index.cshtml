@@ -39,6 +39,7 @@
     @using Disaster_Response_Optimization.WebAPI.Configurations
     @inject IOptions<GoogleMapsConfig> GoogleMapsConfig
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=@GoogleMapsConfig.Value.ApiKey&callback=initMap"></script>
     <script type="module" src="~/js/site.js"></script>
+    <script type="module" src="~/js/mapModule.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=@GoogleMapsConfig.Value.ApiKey&callback=initMap"></script>
 }
